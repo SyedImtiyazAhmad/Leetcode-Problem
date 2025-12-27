@@ -1,0 +1,24 @@
+class Solution {
+    public int mySqrt(int x) {
+        int i=1;
+        int j=x/2;
+        if(x==1){
+            return 1;
+        }
+        while(i<j){
+            int mid=(i+j)/2;
+            long ans=(long)mid*mid;
+            long b=(long)(mid+1)*(mid+1);
+            if(ans==x || (ans<x && x<b)){
+                return mid;
+            }
+            else if(ans>x){
+                j=mid-1;
+            }
+            else{
+                i=mid+1;
+            }
+        }
+        return j;
+    }
+}
