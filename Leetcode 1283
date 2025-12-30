@@ -1,0 +1,23 @@
+class Solution {
+    public int smallestDivisor(int[] nums, int threshold) {
+        int i=1;
+        int j=nums[0];
+        for(int z=0;z<nums.length;z++){
+            j=Math.max(j,nums[z]);
+        }
+        while(i<j){
+            int mid=(i+j)/2;
+            int sum=0;
+            for(int z:nums){
+                sum+=(z-1+mid)/mid;
+            }
+            if(sum<=threshold){
+                j=mid;
+            }
+            else{
+                i=mid+1;
+            }
+        }
+        return j;
+    }
+}
