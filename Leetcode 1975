@@ -1,0 +1,21 @@
+class Solution {
+    public long maxMatrixSum(int[][] matrix) {
+        int min=Integer.MAX_VALUE;
+        long sum=0;
+        int count=0;
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                if(matrix[i][j]<0){
+                    count++;
+                }
+                int a=Math.abs(matrix[i][j]);
+                sum+=a;
+                min=Math.min(a,min);
+            }
+        }
+        if(count>0 && count%2!=0){
+            sum-=2*min;
+        }
+        return sum;
+    }
+}
