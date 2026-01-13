@@ -1,0 +1,40 @@
+class Solution {
+    public boolean check(int[][] squares,double mid,double sum){
+        double count=0.0;
+        for(int i=0;i<squares.length;i++){
+            double y=squares[i][1];
+            double l=squares[i][2];
+           if(mid>y){
+                if(mid>=(y+l)){
+                    count+=l*l;
+                }
+                else{
+                    count+=l*(mid-y);
+                }
+            }
+        }
+        return count >= (sum/2.0);
+    }
+    public double separateSquares(int[][] squares) {
+        double max=0.0;
+        double sum=0.0;
+        for(int i=0;i<squares.length;i++){
+            double l=squares[i][2];
+            double y=squares[i][1];
+            sum+=l*l;
+            max=((y+l)>max)?(y+l):max;
+        }
+        double low=0.0;
+        double high=max;
+        double mod=Math.pow(10,-6);
+        while((high-low)>mod){
+            double mid=(high+low)/2.0;
+            if(check(squares,mid,sum)){
+                high=mid;
+            }else{
+                low=mid;
+            }
+        }
+        return low;
+    }
+}
