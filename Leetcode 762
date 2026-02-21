@@ -1,0 +1,23 @@
+class Solution {
+    public int countPrimeSetBits(int left, int right) {
+        int sum=0;
+        for(int i=left;i<=right;i++){
+            int n=Integer.bitCount(i);
+            boolean isprime=true;
+            if(n==1){
+                isprime=false;
+            }
+            else{
+                for(int j=2;j<n;j++){
+                    if(n%j==0){
+                        isprime=false;
+                    }
+                }
+            }
+            if(isprime){
+                sum++;
+            }
+        }
+        return sum;
+    }
+}
