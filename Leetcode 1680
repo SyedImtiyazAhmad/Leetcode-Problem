@@ -1,0 +1,16 @@
+class Solution {
+    private static final int MOD = 1000000007;
+
+    public int concatenatedBinary(int n) {
+        long result = 0;
+
+        for (int i = 1; i <= n; i++) {
+            int bits = Integer.toBinaryString(i).length();  
+            // number of bits in i
+
+            result = ((result << bits) | i) % MOD;
+        }
+
+        return (int) result;
+    }
+}
