@@ -1,0 +1,26 @@
+class Solution {
+    public String getHappyString(int n, int k) {
+        char cs[]=new char[]{'a','b','c'};
+        String[] ans=new String[]{""};
+        int[] val=new int[]{k};
+        StringBuilder sb=new StringBuilder();
+        compute(n,sb,ans,val,cs);
+        return ans[0];
+    }
+    public void compute(int n,StringBuilder sb,String[] ans,int[] k,char[] cs){
+        if(k[0]<=0) return;
+        if(sb.length()==n){
+            k[0]--;
+            if(k[0]==0) ans[0]=sb.toString();
+            return;
+        }
+        char prev=sb.isEmpty()?'-':sb.charAt(sb.length()-1);
+        for(char c:cs){
+            if(prev!=c){
+                sb.append(c);
+                compute(n,sb,ans,k,cs);
+                sb.deleteCharAt(sb.length()-1);
+            }
+        }
+    }
+}
