@@ -1,0 +1,27 @@
+import java.util.*;
+class Solution {
+    public int[] separateDigits(int[] nums) {
+        HashSet <Integer> hs=new HashSet<>();
+        for(int i=0;i<nums.length;i++){
+            int j=nums[i];
+            Stack<Integer> s=new Stack<>();
+            while(j!=0){
+                s.push(j%10);
+                j/=10;
+            }
+            while(!s.isEmpty()){
+                int z=s.pop();
+                hs.add(z);
+                System.out.println(z);
+            }
+        }
+        int a=0;
+        int n=hs.size();
+        int arr[]=new int[n];
+        for(int value : hs){
+            arr[a]=value;
+            a++;
+        }
+        return arr;
+    }
+}
